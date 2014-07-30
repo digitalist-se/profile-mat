@@ -1,0 +1,14 @@
+name = Mat
+description = Vad ska vi äta.
+core = 7.x
+engine = phptemplate
+version = "7.x-1.0"
+
+; Stylesheets
+stylesheets[all][] = css/site.css
+
+
+; Panels settings
+api[panels][styles][version] = 3
+plugins[panels][layouts] = templates/panels/layouts
+plugins[panels][styles] = templates/panels/styles
