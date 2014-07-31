@@ -2,6 +2,9 @@ name = Mat
 description = Install with commonly used features pre-configured.
 version = VERSION
 core = 7.x
+
+; Core
+
 dependencies[] = block
 dependencies[] = color
 dependencies[] = comment
@@ -24,10 +27,17 @@ dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
 
+; Features
+
 dependencies[] = mat_resturants
 
-; Information added by Drupal.org packaging script on 2014-05-08
-version = "7.28"
-project = "drupal"
-datestamp = "1399522731"
+; Contrib
+
+dependencies[] = admin_menu
+dependencies[] = ctools
+dependencies[] = devel
+dependencies[] = features
+dependencies[] = libaries
+dependencies[] = module_filter
+dependencies[] = panels
 
