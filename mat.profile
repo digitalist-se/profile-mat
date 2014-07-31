@@ -14,6 +14,23 @@ function mat_form_install_configure_form_alter(&$form, $form_state) {
   $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
 }
 
+ $enable = array(
+    'theme_default' => 'mat',
+    'admin_theme' => 'seven',
+    //'zen'
+  );
+  theme_enable($enable);
+
+  foreach ($enable as $var => $theme) {
+    if (!is_numeric($var)) {
+      variable_set($var, $theme);
+    }
+  }
+
+  // Disable the default Bartik theme
+  theme_disable(array('bartik'));
+
+
 
 // First, we must set up an array
 $viewport = array(
