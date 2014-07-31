@@ -14,11 +14,13 @@ function market_ctools_plugin_directory($module, $plugin){
  */
 function market_install_tasks($install_state){
   $tasks = array(
+
     'mat_active_theme' => array(
       'display_name' => st('Setup Theme active'),
       'display' => FALSE,
       'type' => 'normal'
-    );
+    ),
+  );
 
     return $tasks;
 }
