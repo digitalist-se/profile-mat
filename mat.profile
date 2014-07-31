@@ -1,18 +1,33 @@
-<?php
-/**
- * @file
- * Enables modules and site configuration for a mat site installation.
- */
+<?php 
 
 /**
- * Implements hook_form_FORM_ID_alter() for install_configure_form().
- *
- * Allows the profile to alter the site configuration form.
+ * Implements of hook_ctools_plugin_directory().
  */
-function mat_form_install_configure_form_alter(&$form, $form_state) {
-  // Pre-populate the site name with the server name.
-  $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
+function market_ctools_plugin_directory($module, $plugin){
+  if ($module == 'ctools' || $module == 'panels'){
+    return 'plugins/' . $plugin;
+  }
 }
+
+/**
+ * Implements hook_install_tasks().
+ */
+function market_install_tasks($install_state){
+  $tasks = array(
+    'mat_active_theme' => array(
+      'display_name' => st('Setup Theme active'),
+      'display' => FALSE,
+      'type' => 'normal'
+    );
+
+    return $tasks;
+}
+
+/**
+ * Activate theme.
+ */
+
+function mat_active_theme() {
 
  $enable = array(
     'theme_default' => 'mat',
@@ -31,41 +46,4 @@ function mat_form_install_configure_form_alter(&$form, $form_state) {
   theme_disable(array('bartik'));
 
 
-
-// First, we must set up an array
-$viewport = array(
-  '#tag' => 'meta', // The #tag is the html tag - <link />
-  '#attributes' => array( // Set up an array of attributes inside the tag
-    'name' => 'viewport',
-    'content' => 'initial-scale=1, maximum-scale=1'
-  ),
-);
-drupal_add_html_head($viewport, 'initial_scale');
-
-// First, we must set up an array
-$web_app_capable = array(
-  '#tag' => 'meta', // The #tag is the html tag - <link />
-  '#attributes' => array( // Set up an array of attributes inside the tag
-    'name' => 'apple-mobile-web-app-capable',
-    'content' => 'yes'
-  ),
-);
-drupal_add_html_head($web_app_capable, 'mobile_web');
-
-$web_icon = array(
-  '#tag' => 'link', // The #tag is the html tag - <link />
-  '#attributes' => array( // Set up an array of attributes inside the tag
-    'rel' => 'apple-touch-icon',
-    'href' => 'http://kebab.webcindario.com/wp-content/themes/sliding-door/imagemenu/images/1.jpg'
-  ),
-);
-drupal_add_html_head($web_icon, 'touch-icon');
-
-$web_image = array(
-  '#tag' => 'link', // The #tag is the html tag - <link />
-  '#attributes' => array( // Set up an array of attributes inside the tag
-    'rel' => 'apple-touch-startup-image',
-    'href' => 'http://i.imgur.com/M1mjWi2.png'
-  ),
-);
-drupal_add_html_head($web_image, 'touch-image');
+}
