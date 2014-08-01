@@ -21,11 +21,19 @@ function mat_install_tasks($install_state){
       'type' => 'normal'
     ),
 
-    'mat_add_values' => array(
+    'mat_add_taxonomies' => array(
+      'display_name' => st('Setup add taxonomies'),
+      'display' => FALSE,
+      'type' => 'normal'
+    ),
+
+    'mat_add_nodes' => array(
       'display_name' => st('Setup Theme active'),
       'display' => FALSE,
       'type' => 'normal'
     ),
+
+    
 
   );
 
@@ -54,18 +62,21 @@ function mat_active_theme() {
   // Disable the default Bartik theme
   theme_disable(array('bartik'));
 
+    // Set frontpage
+  variable_set('site_frontpage', 'home');
+
 }
 
-function mat_add_values() {
-
-  // Set frontpage
-  variable_set('site_frontpage', 'home');
+function mat_add_taxonomies() {
 
   $vocabulary = taxonomy_vocabulary_machine_name_load('tags');
 
   $terms = array(
     'Kebab',
     'Pizza',
+    'Lunch',
+    'Sallad',
+
   );
 
   mat_add_taxonomy_terms_recursive($terms, $vocabulary->vid);
@@ -87,4 +98,26 @@ function mat_add_taxonomy_terms_recursive($term_tree, $vid, $parent = NULL) {
       mat_add_taxonomy_terms_recursive($term, $vid, $term_object->tid);
     }
   }
+}
+
+function mat_add_nodes() {
+
+  $term_kebab = taxonomy_get_term_by_name('Kebab');
+  $term_pizza = taxonomy_get_term_by_name('Pizza');
+
+  $values = array(
+    'type' => 'resturant',
+    'uid' => 1,
+    'status' => 1,
+  );
+  $entity = entity_create('node', $values);
+
+  $wrapper = entity_metadata_wrapper('node', $entity);
+  $wrapper->title->set(t("Palmyra"));
+  $wrapper->body->set(array('value' => "Fett nice kebab bre Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac blandit enim. Aenean quis nulla "));
+  $wrapper->field_tags->set(array($term_kebab[1]->tid));
+  $wrapper->field_latitude->set("59.297196");
+  $wrapper->field_longitude->set("18.050202");
+  $wrapper->save();
+
 }
