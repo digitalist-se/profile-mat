@@ -57,6 +57,10 @@ function mat_active_theme() {
 }
 
 function mat_add_values() {
+
+  // Set frontpage
+  variable_set('site_frontpage', 'home');
+
   $vocabulary = taxonomy_vocabulary_machine_name_load('tags');
 
   $terms = array(
