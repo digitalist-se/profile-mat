@@ -22,3 +22,6 @@ projects[module_filter][subdir] = contrib
 
 projects[panels][version] = 3.4
 projects[panels][subdir] = contrib
+
+projects[entity][version] = 1.5
+projects[entity][subdir] = contrib
