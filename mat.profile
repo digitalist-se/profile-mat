@@ -104,7 +104,7 @@ function mat_add_nodes(){
 
   $term_kebab = taxonomy_get_term_by_name('Kebab');
   $term_pizza = taxonomy_get_term_by_name('Pizza');
-  $term_sallad = taxonomy_get_term_by_name('Sallad')
+  $term_sallad = taxonomy_get_term_by_name('Sallad');
 
   $values = array(
     'type' => 'resturant',
