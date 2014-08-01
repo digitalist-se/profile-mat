@@ -28,14 +28,6 @@ function _mat_resturants_redirect_callback($form, &$form_state) {
  * Implements hook_theme().
  */
 function mat_resturants_theme() {
-  drupal_add_js(drupal_get_path('module', 'mat_resturants') . '/js/angular.min.js', 'file');
-  drupal_add_js(drupal_get_path('module', 'mat_resturants') . '/js/angular-touch.min.js', 'file');
-  drupal_add_js(drupal_get_path('module', 'mat_resturants') . '/js/angular-sanitize.js', 'file');
-  drupal_add_js(drupal_get_path('module', 'mat_resturants') . '/js/fastclick.js', 'file');
-  drupal_add_js(drupal_get_path('module', 'mat_resturants') . '/js/angular.min.js.map', 'file');
-  drupal_add_js(drupal_get_path('module', 'mat_resturants') . '/js/google.js', 'file');
-  drupal_add_js(drupal_get_path('module', 'mat_resturants') . '/js/gmaps.js', 'file');
-  drupal_add_js(drupal_get_path('module', 'mat_resturants') . '/js/handler.js', 'file');
 
   $theme = array(
     'resturants_list' => array(
@@ -52,6 +44,18 @@ function mat_resturants_theme() {
  */
 
 function template_preprocess_resturants_list(&$vars) {
+
+  $path = drupal_get_path('module', 'mat_resturants');
+
+  drupal_add_js($path . '/js/angular.min.js', 'file');
+  drupal_add_js($path . '/js/angular-touch.min.js', 'file');
+  drupal_add_js($path . '/js/angular-sanitize.js', 'file');
+  drupal_add_js($path . '/js/fastclick.js', 'file');
+  drupal_add_js($path . '/js/angular.min.js.map', 'file');
+  drupal_add_js($path . '/js/google.js', 'file');
+  drupal_add_js($path . '/js/gmaps.js', 'file');
+  drupal_add_js($path . '/js/handler.js', 'file');
+
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')->entityCondition('bundle', 'resturant')->propertyCondition('status', 1)->propertyOrderBy('created', 'DESC');
   $result = $query->execute();
