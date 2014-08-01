@@ -46,13 +46,12 @@ function mat_resturants_theme() {
 function template_preprocess_resturants_list(&$vars) {
 
   $path = drupal_get_path('module', 'mat_resturants');
-
   drupal_add_js($path . '/js/angular.min.js', 'file');
   drupal_add_js($path . '/js/angular-touch.min.js', 'file');
   drupal_add_js($path . '/js/angular-sanitize.js', 'file');
   drupal_add_js($path . '/js/fastclick.js', 'file');
   drupal_add_js($path . '/js/angular.min.js.map', 'file');
-  drupal_add_js($path . '/js/google.js', 'file');
+  drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyD6kiVgdA_nkfp2P_wE8sUh35l-yPhpNEs', 'file');
   drupal_add_js($path . '/js/gmaps.js', 'file');
   drupal_add_js($path . '/js/handler.js', 'file');
 

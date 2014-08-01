@@ -104,6 +104,7 @@ function mat_add_nodes(){
 
   $term_kebab = taxonomy_get_term_by_name('Kebab');
   $term_pizza = taxonomy_get_term_by_name('Pizza');
+  $term_sallad = taxonomy_get_term_by_name('Sallad')
 
   $values = array(
     'type' => 'resturant',
@@ -111,13 +112,21 @@ function mat_add_nodes(){
     'status' => 1,
   );
   $entity = entity_create('node', $values);
-
   $wrapper = entity_metadata_wrapper('node', $entity);
   $wrapper->title->set(t("Palmyra"));
   $wrapper->body->set(array('value' => "Fett nice kebab bre Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac blandit enim. Aenean quis nulla "));
   $wrapper->field_tags->set(array($term_kebab[1]->tid));
   $wrapper->field_latitude->set("59.297196");
   $wrapper->field_longitude->set("18.050202");
+  $wrapper->save();
+
+  $entity = entity_create('node', $values);
+  $wrapper = entity_metadata_wrapper('node', $entity);
+  $wrapper->title->set(t("Pane Vino"));
+  $wrapper->body->set(array('value' => "God pizza och pasta men fett dyrt. men gott "));
+  $wrapper->field_tags->set(array($term_kebab[1]->tid, $term_sallad[1]->tid));
+  $wrapper->field_latitude->set("59.317842");
+  $wrapper->field_longitude->set("18.049888");
   $wrapper->save();
 
 }
