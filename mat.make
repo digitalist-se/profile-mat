@@ -14,15 +14,11 @@ projects[devel][subdir] = contrib
 projects[features][version] = 2.0
 projects[features][subdir] = contrib
 
+projects[libraries][version] = 2.2
+projects[libraries][subdir] = contrib
+
 projects[module_filter][version] = 2.0-alpha2
 projects[module_filter][subdir] = contrib
 
 projects[panels][version] = 3.4
 projects[panels][subdir] = contrib
-
-
-; Forma installation "profile"
-projects[forma][type] = module
-projects[forma][download][type] = git
-projects[forma][download][url] = git@github.com:nodeone/profile-forma.git
-projects[forma][download][branch] = master
