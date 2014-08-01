@@ -100,7 +100,7 @@ function mat_add_taxonomy_terms_recursive($term_tree, $vid, $parent = NULL) {
   }
 }
 
-function mat_add_nodes() {
+function mat_add_nodes(){
 
   $term_kebab = taxonomy_get_term_by_name('Kebab');
   $term_pizza = taxonomy_get_term_by_name('Pizza');
