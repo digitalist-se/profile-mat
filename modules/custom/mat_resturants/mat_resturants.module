@@ -1,9 +1,9 @@
 <?php
+
 /**
  * @file
  * Code for the mat_resturants feature.
  */
-
 include_once 'mat_resturants.features.inc';
 
 /**
@@ -15,20 +15,24 @@ function mat_resturants_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function mat_resturants_form_resturant_node_form_alter(&$form, &$form_state) {
   $form['actions']['submit']['#submit'][] = '_mat_resturants_redirect_callback';
 }
 
+/**
+ * Custom redirect callback.
+ */
 function _mat_resturants_redirect_callback($form, &$form_state) {
   $form_state['redirect'] = '<front>';
-
 }
 
 /**
  * Implements hook_theme().
  */
 function mat_resturants_theme() {
-
   $theme = array(
     'resturants_list' => array(
       'variables' => array('title' => NULL, 'resturantsJson' => NULL),
@@ -42,9 +46,7 @@ function mat_resturants_theme() {
 /**
  * Template preprocess resturants_list
  */
-
 function template_preprocess_resturants_list(&$vars) {
-
   $path = drupal_get_path('module', 'mat_resturants');
   drupal_add_js($path . '/js/angular.min.js', 'file');
   drupal_add_js($path . '/js/angular-touch.min.js', 'file');
@@ -62,21 +64,18 @@ function template_preprocess_resturants_list(&$vars) {
   if (isset($result['node'])) {
     $entities_ids = array_keys($result['node']);
   } else {
-  	return false;
+    return false;
   }
 
   $resturants = node_load_multiple($entities_ids, array(), FALSE);
 
   $vars['resturantsJson'] = drupal_json_encode($resturants);
-
 }
 
 /**
  * Implements hook_theme().
  */
-
 function mat_resturants_menu() {
-
 
   $items['ajax/resturants'] = array(
     'title' => 'Ajax callback',
@@ -85,16 +84,12 @@ function mat_resturants_menu() {
     'type' => MENU_CALLBACK,
   );
 
-  $items['ajax/tag'] = array(
-    'title' => 'Ajax callback',
-    'page callback' => 'mat_resturants_tags',
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-
-	return $items;
+  return $items;
 }
 
+/**
+ * Custom page callback that prints restaurants in json format.
+ */
 function mat_resturants_content() {
 
   $query = new EntityFieldQuery();
@@ -109,52 +104,21 @@ function mat_resturants_content() {
 
   $resturants = node_load_multiple($entities_ids, array(), FALSE);
 
-  foreach($resturants as $resturant) {
+  foreach ($resturants as $resturant) {
 
     $stack = array();
 
-    foreach($resturant->field_tags["und"] as $key => $value){
-      $the_tag = array(
+    foreach ($resturant->field_tags[LANGUAGE_NONE] as $key => $value) {
+      $stack[] = array(
         'tagID' => $value["tid"],
         'namn' => taxonomy_term_load($value["tid"])->name,
       );
-      array_push($stack,$the_tag);
     }
 
     $resturant->tags = $stack;
-    unset($foo);
-
   }
 
   header('content-type: application/json; charset=utf-8');
 
-  echo $_GET['callback'] . '('. json_encode($resturants) .')';
-
-}
-
-function mat_resturants_tags() {
-
-
-
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'taxonomy_term');
-  $result = $query->execute();
-
-  if (isset($result['taxonomy_term'])) {
-    $entities_ids = array_keys($result['taxonomy_term']);
-  }
-
-  $tags = array();
-  foreach($entities_ids as $key => $value) {
-    $taggen = taxonomy_term_load($value);
-    $newdata =  array (
-      'tagID' => $taggen->tid,
-      'namn' => $taggen->name,
-    );
-    array_push($tags, $newdata);
-  }
-
-  header('content-type: application/json; charset=utf-8');
-  echo $_GET['callback'] . '('.json_encode($tags).')';
-
+  echo $_GET['callback'] . '(' . json_encode($resturants) . ')';
 }
