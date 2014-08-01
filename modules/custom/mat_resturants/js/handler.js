@@ -63,9 +63,6 @@ var MatApp = angular.module('Mat', ['ngTouch', 'ngSanitize']);
           $scope.selectedNid = activeResturant["nid"];
           $scope.selectedResturantBody = activeResturant.body.und[0].value;
 
-          console.log(bodyn);
-          console.log($scope.selectedResturantBody);
-
           angular.forEach(activeResturant.tags, function(value, key) {
             tagsArray.push(value.namn);
           });
