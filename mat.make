@@ -23,3 +23,9 @@ projects[module_filter][subdir] = contrib
 projects[panels][version] = 3.4
 projects[panels][subdir] = contrib
 
+
+; Forma installation "profile"
+projects[forma][type] = module
+projects[forma][download][type] = git
+projects[forma][download][url] = git@github.com:nodeone/profile-forma.git
+projects[forma][download][branch] = master
