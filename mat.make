@@ -25,3 +25,6 @@ projects[panels][subdir] = contrib
 
 projects[entity][version] = 1.5
 projects[entity][subdir] = contrib
+
+projects[strongarm][version] = 2.0
+projects[strongarm][subdir] = contrib

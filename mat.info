@@ -40,6 +40,7 @@ dependencies[] = module_filter
 dependencies[] = panels
 dependencies[] = page_manager
 dependencies[] = entity
+dependencies[] = strongarm
 
 
 
