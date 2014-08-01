@@ -509,6 +509,10 @@ body.edit-page .container {
   border: 1px solid #DDD;
   box-shadow: 0px 2px 6px 3px rgba(128, 128, 128, 0.15);
   position: static;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
   transform: none;
 }
 @media (max-width: 700px) {

@@ -354,7 +354,7 @@ body.edit-page {
     border: 1px solid #DDD;
     box-shadow: 0px 2px 6px 3px rgba(128, 128, 128, 0.15);
     position: static;
-    transform: none;
+    @include transform(none);
 
     @include b(mob) {
       width:100%;
