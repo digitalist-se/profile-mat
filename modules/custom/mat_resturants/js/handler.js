@@ -61,9 +61,7 @@ var MatApp = angular.module('Mat', ['ngTouch', 'ngSanitize']);
 
           $scope.selectedResturantTitle = activeResturant.title;
           $scope.selectedNid = activeResturant["nid"];
-
-          var bodyn = activeResturant.body.und[0].safe_value;
-          $scope.selectedResturantBody = bodyn.substring(0, bodyn.length-1);
+          $scope.selectedResturantBody = activeResturant.body.und[0].value;
 
           console.log(bodyn);
           console.log($scope.selectedResturantBody);
