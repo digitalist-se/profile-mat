@@ -14,9 +14,6 @@ projects[devel][subdir] = contrib
 projects[features][version] = 2.0
 projects[features][subdir] = contrib
 
-projects[libraries][version] = 2.2
-projects[libraries][subdir] = contrib
-
 projects[module_filter][version] = 2.0-alpha2
 projects[module_filter][subdir] = contrib
 
