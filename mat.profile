@@ -3,7 +3,7 @@
 /**
  * Implements of hook_ctools_plugin_directory().
  */
-function market_ctools_plugin_directory($module, $plugin){
+function mat_ctools_plugin_directory($module, $plugin){
   if ($module == 'ctools' || $module == 'panels'){
     return 'plugins/' . $plugin;
   }
@@ -12,7 +12,7 @@ function market_ctools_plugin_directory($module, $plugin){
 /**
  * Implements hook_install_tasks().
  */
-function market_install_tasks($install_state){
+function mat_install_tasks($install_state){
   $tasks = array(
 
     'mat_active_theme' => array(
