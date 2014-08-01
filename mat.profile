@@ -124,7 +124,7 @@ function mat_add_nodes(){
   $wrapper = entity_metadata_wrapper('node', $entity);
   $wrapper->title->set(t("Pane Vino"));
   $wrapper->body->set(array('value' => "God pizza och pasta men fett dyrt. men gott "));
-  $wrapper->field_tags->set(array($term_pizza[1]->tid));
+  $wrapper->field_tags->set(array(2,3));
   $wrapper->field_latitude->set("59.317842");
   $wrapper->field_longitude->set("18.049888");
   $wrapper->save();
