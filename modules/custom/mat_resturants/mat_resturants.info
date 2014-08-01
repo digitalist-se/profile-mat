@@ -36,3 +36,4 @@ features[user_permission][] = create resturant content
 features[user_permission][] = edit any resturant content
 features[user_permission][] = edit own resturant content
 features[user_role][] = administrator
+features[variable][] = page_manager_node_edit_disabled
